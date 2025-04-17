@@ -71,5 +71,10 @@ def resolve_task(task_id):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port_value = os.environ.get('PORT', '5000')
+    try:
+        port = int(port_value)
+    except ValueError:
+        # Fall back to default port if conversion fails
+        port = 5000
     app.run(host='0.0.0.0', port=port)
